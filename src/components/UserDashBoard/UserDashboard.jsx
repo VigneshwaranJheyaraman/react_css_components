@@ -15,7 +15,8 @@ class UserDashboard extends Component {
           location: "",
           dob: ""
         }
-      }
+      },
+      zIndex: 0
     };
   }
 
@@ -43,21 +44,29 @@ class UserDashboard extends Component {
   };
 
   handleClick = e => {
-    e.target.style.zIndex = 99;
+    this.setState({ zIndex: 99 });
   };
 
   handleMouseLeave = e => {
-    e.target.style.zIndex = this.props.zIndex;
+    let target = e.target;
+    this.setState({ zIndex: 0 }, () => {
+      target.style.zIndex = this.props.zIndex;
+    });
   };
 
   render() {
     return (
       <div
         className={this.props.className}
-        style={{ zIndex: this.props.zIndex, margin: this.props.margin }}
+        style={{
+          zIndex:
+            this.state.zIndex === 0 ? this.props.zIndex : this.state.zIndex,
+          margin: this.props.margin
+        }}
         onClick={this.handleClick}
         onMouseLeave={this.handleMouseLeave}
       >
+        <div className={this.props.markerClass} />
         {/* user dashboard details are appended here */}
         <UserDetails
           className={this.props.userDetailsClassName}

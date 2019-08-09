@@ -18,6 +18,7 @@ function UserFiles(props) {
           userMetaClassName="usermeta"
           zIndex={i}
           margin={`${15 + 40 * (i + 1)}px auto`}
+          markerClass="marker"
         />
       );
     }
