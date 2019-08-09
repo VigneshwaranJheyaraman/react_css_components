@@ -8,7 +8,7 @@ import {
 
 function Clock(props) {
   const canvasRef = React.createRef();
-  var [secondsValue, setSecondsHand] = useState(0);
+  var [secondsValue, setSecondsHand] = useState(0.0);
   var [minutesValue, setMinutesHand] = useState(0.0);
   var [hoursValue, setHoursHand] = useState(0);
 
@@ -86,11 +86,11 @@ function Clock(props) {
     context.stroke();
     context.closePath();
     if (seconds < 12) {
-      setSecondsHand(seconds + 1);
+      setSecondsHand(seconds + 0.2);
     } else {
       setSecondsHand(0);
       setMinutesHand(p => {
-        return p + 0.1;
+        return p + 0.2;
       });
     }
   };
@@ -139,7 +139,7 @@ function Clock(props) {
     context.strokeStyle = "blue";
     context.stroke();
     context.closePath();
-    if (minutes > 11.9) {
+    if (minutes > 12) {
       setMinutesHand(0.0);
       setHoursHand(p => {
         return p + 1;
